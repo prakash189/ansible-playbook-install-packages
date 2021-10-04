@@ -29,7 +29,8 @@ pipeline {
             stage('start the sonar quebe server') {
               steps {
                   sh 'export JAVA_HOME=/usr/bin'
-                  sh '/home/ubuntu/sonarqube-9.1.0.47736/bin/linux-x86-64/sonar.sh console &'
+                  sh 'cp sonar.properties /home/ubuntu/sonarqube-9.1.0.47736/conf/sonar.properties'
+                  sh '/home/ubuntu/sonarqube-9.1.0.47736/bin/linux-x86-64/sonar.sh start'
                 }
             }
 
