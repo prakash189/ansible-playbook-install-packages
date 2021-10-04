@@ -28,9 +28,7 @@ pipeline {
 
             stage('start the sonar quebe server') {
               steps {
-                  sh 'sudo sysctl -w vm.max_map_count=524288'
-                  sh  'sudo sysctl -w fs.file-max=131072'
-                  sh  'ulimit -n 131072'
+                  sh 'export JAVA_HOME=/usr/bin'
                   sh '/home/ubuntu/sonarqube-9.1.0.47736/bin/linux-x86-64/sonar.sh console &'
                 }
             }
