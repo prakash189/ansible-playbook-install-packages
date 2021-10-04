@@ -11,7 +11,8 @@ ExecStop=/home/ubuntu/sonarqube-9.1.0.47736/bin/linux-x86-64/sonar.sh stop
 User=ubuntu
 Group=ubuntu
 Restart=always
-**LimitNOFILE=65536**
+LimitNOFILE=131072
+LimitNPROC=8192
 
 [Install]
 WantedBy=multi-user.target
