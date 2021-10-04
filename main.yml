@@ -8,8 +8,8 @@
     - vars/main.yml
 
   tasks:
-  - name: Update apt-get repo and cache
-    apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+  # - name: Update apt-get repo and cache
+  #   apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
       
   # - name: install JDK 11
   #   apt:
@@ -44,11 +44,11 @@
   #     name: unzip
   #     state: present
 
-  - name: copy sonarqube properties file to remote system
-    copy:
-       src: sonar.properties
-       dest: /home/ubuntu/sonarqube-9.1.0.47736/conf
-       mode: 0755
+  # - name: copy sonarqube properties file to remote system
+  #   copy:
+  #      src: sonar.properties
+  #      dest: /home/ubuntu/sonarqube-9.1.0.47736/conf
+  #      mode: 0755
 
   # - name: download the sonarqube community
   #   unarchive:
@@ -65,11 +65,11 @@
   #     recurse: yes
   #     state: directory
 
-  - name: Copy sonarqube service from local to remote
-    copy:
-       src: sonar.service
-       dest: /etc/systemd/system/
-       mode: 0755
+  # - name: Copy sonarqube service from local to remote
+  #   copy:
+  #      src: sonar.service
+  #      dest: /etc/systemd/system/
+  #      mode: 0755
 
   # - name: set mex memory to sonarkube
   #   shell:
@@ -83,12 +83,12 @@
   #   shell:
   #      'ulimit -n 131072'
 
-  - name: Start and enable sonar service
-    systemd:
-      name: sonar
-      state: restarted
-      enabled: true
-      daemon_reload: true
+  # - name: Start and enable sonar service
+  #   systemd:
+  #     name: sonar
+  #     state: restarted
+  #     enabled: true
+  #     daemon_reload: true
 
 
   # - name:  install ansible postgresql dependancy packages
@@ -149,6 +149,12 @@
   #     state: present
   #   become: yes
   #   become_user: postgres
+  
+  - name: sonar scanner cli download
+    unarchive:
+      src: https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip
+      dest: /home/ubuntu/
+      remote_src: yes
 
 
   
