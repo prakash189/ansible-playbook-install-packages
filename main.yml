@@ -75,11 +75,11 @@
     shell:
        'sysctl -w vm.max_map_count=524288'
 
-  - name: set mex memory to sonarkube
+  - name: set mex file descriptor to sonarkube
     shell:
-       'sysctl -w fs.file-max=131072'
+       'sudo sysctl -w fs.file-max=131072'
       
-  - name: set mex memory to sonarkube
+  - name: set mex user limit to sonarkube
     shell:
        'ulimit -n 131072'
 
