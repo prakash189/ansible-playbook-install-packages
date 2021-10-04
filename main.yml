@@ -90,7 +90,7 @@
   - name: Ensure database is created
     sudo_user: postgres
     postgresql_db: 
-      name: '{{ db_name }}'
+      name: {{ db_name }}
       encoding: 'UTF-8'
       lc_collate: 'en_US.UTF-8'
       lc_ctype: 'en_US.UTF-8'
@@ -100,76 +100,17 @@
   - name: Ensure user has access to the database
     sudo_user: postgres
     postgresql_user: 
-      db: "{{ db_name }}"
-      name: "{{ db_user }}"
-      password: "{{ db_password }}"
+      db: {{ db_name }}
+      name: {{ db_user }}
+      password: {{ db_password }}
       priv: ALL
       state: present
 
   - name: Ensure user does not have unnecessary privileges
     sudo_user: postgres
     postgresql_user: 
-      name: "{{ db_user }}"
+      name: {{ db_user }}
       role_attr_flags: NOSUPERUSER,NOCREATEDB
       state: pr
 
-  - name: add tomcat group
-    group:
-      name: tomcat
-
-  - name: add tomcat user
-    user:
-      name: tomcat
-      group: tomcat
-      home: /user/share/tomcat
-      createhome: no
-
-  - name: create /opt/tomcat directory
-    file:
-      path: /opt/tomcat
-      state: directory
-      mode: 0755
-
-  - name: download & unarchive
-    unarchive:
-      src: http://apache.cs.utah.edu/tomcat/tomcat-9/v9.0.53/bin/apache-tomcat-9.0.53.tar.gz
-      dest: /opt/tomcat
-      remote_src: yes
-      extra_opts: [--strip-components=1]
-
-  - name: Change ownership
-    file:
-      path: /opt/tomcat
-      owner: tomcat
-      group: tomcat
-      mode: "u+rwx,g+rx,o=rx"
-      recurse: yes
-      state: directory
-
-  - name: Copy Tomcat service from local to remote
-    copy:
-       src: tomcat.service
-       dest: /etc/systemd/system/
-       mode: 0755
-
-  - name: Start and enable Tomcat service
-    systemd:
-      name: tomcat
-      state: started
-      enabled: true
-      daemon_reload: true
-      
-  - name: Create  sample directory
-    file:
-      path: "/opt/tomcat/webapps"
-      state: directory
-      mode: 0777
-    become: true
-
-  - name: Start and enable Tomcat service
-    systemd:
-      name: tomcat
-      state: restarted
-      enabled: true
-      daemon_reload: true
-
+  
