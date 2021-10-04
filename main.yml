@@ -59,16 +59,16 @@
       recurse: yes
       state: directory
   
-  - name: Ensure bash, OpenSSl, and libssl are the latest versions
-    apt: 
-      name: 
-        - bash
-        - openssl
-        - libssl-dev
-        - libssl-doc
-      update_cache: true 
-      state: latest
-      tags: packages
+  # - name: Ensure bash, OpenSSl, and libssl are the latest versions
+  #   apt: 
+  #     name: 
+  #       - bash
+  #       - openssl
+  #       - libssl-dev
+  #       - libssl-doc
+  #     update_cache: true 
+  #     state: latest
+  #     tags: packages
 
   - name: Install PostgreSQL
     apt: 
