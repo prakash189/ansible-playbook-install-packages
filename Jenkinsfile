@@ -28,8 +28,7 @@ pipeline {
 
             stage('start the sonar quebe server') {
               steps {
-                  sh 'mv /home/ubuntu/sonarqube-* /home/ubuntu/sonarqube'
-                  sh 'cd /home/ubuntu/sonarqube/bin/linux-x86-64/'
+                  sh 'cd /home/ubuntu/sonarqube-9.1.0.47736/bin/linux-x86-64/'
                   sh 'sonar.sh console &'
                 }
             }
