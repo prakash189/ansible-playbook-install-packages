@@ -58,24 +58,25 @@
       state: directory
   
   - name: Ensure bash, OpenSSl, and libssl are the latest versions
-    apt: name={{ item }} update_cache=true state=latest
-    with_items:
+    apt: 
+      name: 
       - bash
       - openssl
       - libssl-dev
       - libssl-doc
+    update_cache: true 
+    state: latest
     tags: packages
 
   - name: Install PostgreSQL
     apt: 
-      name: {{ item }} 
-      update_cache: true 
-      state: installed
-    with_items:
+      name: 
       - postgresql
       - postgresql-contrib
       - libpq-dev
       - python-psycopg2
+    update_cache: true 
+    state: installed
     tags: packages
 
   - name: Ensure the PostgreSQL service is running
