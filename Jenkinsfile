@@ -14,7 +14,7 @@ pipeline {
 
          }
 
-        stage('run ansible playbook') {
+        stage('run ansible playboo-install-packages') {
 
             steps {
                 
