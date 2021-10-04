@@ -13,6 +13,8 @@ pipeline {
        git branch: 'main', url: 'https://github.com/prakash189/ansible-playbook-install-packages'
 
          }
+    }
+        
 
         stage('run ansible playboo-install-packages') {
 
@@ -24,7 +26,6 @@ pipeline {
             }
         }
 
-       }
             stage('start the sonar quebe server') {
               steps {
                   sh 'mv sonarqube-* sonarqube'
