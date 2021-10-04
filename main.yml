@@ -48,7 +48,7 @@
       dest: /home/ubuntu/
       remote_src: yes
 
-   - name: Change ownership for sonarquebe
+  - name: Change ownership for sonarquebe
     file:
       path: /home/ubuntu/sonarqube-9.1.0.47736
       owner: ubuntu
