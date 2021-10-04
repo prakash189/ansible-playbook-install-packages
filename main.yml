@@ -72,13 +72,8 @@
 
   - name: Install PostgreSQL
     apt: 
-      name: "{{ item }}"
+      name: postgresql
       state: present
-      with_items: 
-      - postgresql
-      - postgresql-contrib
-      - libpq-dev
-      - python-psycopg2
       update_cache: true 
       tags: packages
 
