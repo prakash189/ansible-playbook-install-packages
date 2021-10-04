@@ -72,10 +72,10 @@
 
   - name: Install PostgreSQL
     apt: 
-      name: postgresql-10
+      name: postgresql
       state: present
       update_cache: true 
-      tags: packages
+    
 
   - name: Ensure the PostgreSQL service is running
     service: 
