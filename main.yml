@@ -39,16 +39,16 @@
   #   pip:
   #     name: lxml 
 
-  - name: install unzip
-    apt: 
-      name: unzip
-      state: present
+  # - name: install unzip
+  #   apt: 
+  #     name: unzip
+  #     state: present
 
-  - name: copy sonarqube properties file to remote system
-    copy:
-       src: sonar.properties
-       dest: /home/ubuntu/sonarqube-9.1.0.47736/conf
-       mode: 0755
+  # - name: copy sonarqube properties file to remote system
+  #   copy:
+  #      src: sonar.properties
+  #      dest: /home/ubuntu/sonarqube-9.1.0.47736/conf
+  #      mode: 0755
 
   # - name: download the sonarqube community
   #   unarchive:
@@ -56,25 +56,30 @@
   #     dest: /home/ubuntu/
   #     remote_src: yes
 
-  - name: Change ownership for sonarquebe
-    file:
-      path: /home/ubuntu/sonarqube-9.1.0.47736
-      owner: ubuntu
-      group: ubuntu
-      mode: "u+rwx,g+rx,o=rx"
-      recurse: yes
-      state: directory
+  # - name: Change ownership for sonarquebe
+  #   file:
+  #     path: /home/ubuntu/sonarqube-9.1.0.47736
+  #     owner: ubuntu
+  #     group: ubuntu
+  #     mode: "u+rwx,g+rx,o=rx"
+  #     recurse: yes
+  #     state: directory
 
-  - name: Copy sonarqube service from local to remote
-    copy:
-       src: sonar.service
-       dest: /etc/systemd/system/
-       mode: 0755
+  # - name: Copy sonarqube service from local to remote
+  #   copy:
+  #      src: sonar.service
+  #      dest: /etc/systemd/system/
+  #      mode: 0755
+
+  - name: set mex memory to sonarkube
+    shell:
+       'sysctl -w vm.max_map_count=524288'
+      
 
   - name: Start and enable sonar service
     systemd:
       name: sonar
-      state: started
+      state: restarted
       enabled: true
       daemon_reload: true
 
