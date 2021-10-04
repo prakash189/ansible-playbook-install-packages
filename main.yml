@@ -72,7 +72,7 @@
 
   - name: Install PostgreSQL
     apt: 
-      pkg: postgresql
+      name: postgresql-10
       state: present
       update_cache: true 
       tags: packages
