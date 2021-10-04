@@ -39,10 +39,10 @@
   #   pip:
   #     name: lxml 
 
-  # - name: install unzip
-  #   apt: 
-  #     name: unzip
-  #     state: present
+  - name: install unzip
+    apt: 
+      name: unzip
+      state: present
 
   # - name: download the sonarqube community
   #   unarchive:
